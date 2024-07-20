@@ -1,15 +1,21 @@
 import express from 'express';
 import { config } from 'dotenv';
 import { translate } from './handlers/translate';
+import cors from 'cors';
+import bodyParser from 'body-parser';
 
 config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 const apiKey = process.env.OPENAI_API_KEY;
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+  })
+);
 
 app.get('/', (req, res) => {
   console.log('API KEY: ', apiKey);
