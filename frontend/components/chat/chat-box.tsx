@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import { Button } from '../ui/button';
 import {
   Card,
@@ -35,6 +35,7 @@ export interface Message {
 const ChatBox = () => {
   const [language, setLangauge] = useState('Hindi');
   const [text, setText] = useState('');
+  const containerRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -109,7 +110,10 @@ const ChatBox = () => {
           </SelectContent>
         </Select>
       </CardHeader>
-      <CardContent className="border-y flex-1 h-full relative p-0">
+      <CardContent
+        ref={containerRef}
+        className="border-y h-full relative p-0 overflow-hidden"
+      >
         <ScrollArea className="h-[100%] p-4">
           <ChatMessages messages={messages} />
         </ScrollArea>

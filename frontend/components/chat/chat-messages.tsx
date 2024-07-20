@@ -13,7 +13,7 @@ const ChatMessages = ({ messages }: { messages: Message[] }) => {
         >
           <div
             className={cn(
-              'text-sm text-muted-foreground border rounded-lg p-4 max-w-sm w-full',
+              'text font-light text-muted-foreground border rounded-lg p-4 max-w-sm w-full',
               message.type === 'user' && 'bg-primary text-white'
             )}
           >
